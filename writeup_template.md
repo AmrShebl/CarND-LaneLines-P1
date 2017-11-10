@@ -23,25 +23,26 @@ The goals / steps of this project are the following:
 
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I .... 
+My pipeline consisted of the following:
+1. The image is converted into gray scale
+2. The gray scale image is filtered with a gaussian filter to remove noise and prepare it for edge detection
+3. Canny edge detection is applied
+4. A quadrilateral is defined by its vertices and used to only keep the region of interest in the image of edges
+5. Hough lines algorithm is applied to find lines in edges
+6. The lines found are combined with the original image to show them together
+7. The lines found by hough algorithm are passed to an averaging algorithm that calculates two average lines representing the right and the left lanes.
+The algorithm first divides lines into right and left lines depending on the slope
+It then finds an average slope for each group weighted by the length of the line
+8. The two average lines are drawn on the original image to represent the lanes
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
-
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
-
-![alt text][image1]
 
 
 ### 2. Identify potential shortcomings with your current pipeline
 
 
-One potential shortcoming would be what would happen when ... 
-
-Another shortcoming could be ...
+A short coming of this algorithm is that the lane lines are wiggling a lot in the video
 
 
 ### 3. Suggest possible improvements to your pipeline
 
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
+A possible improvement would be to average the identified lines form frame to frame
